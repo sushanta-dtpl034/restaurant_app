@@ -1,0 +1,68 @@
+.chk-validated {
+  display: block;
+}
+
+.chk-validated .form-control {
+  border-color: #EA1212;
+  padding-right: calc(1.75em + 1rem);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23EA1212'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23EA1212' stroke='none'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right calc(0.4375em + 0.25rem) center;
+  background-size: calc(0.875em + 0.5rem) calc(0.875em + 0.5rem);
+}
+.chk-validated .form-control:focus {
+  border-color: #EA1212;
+  box-shadow: 0 0 0.25rem 0rem rgba(234, 18, 18, 0.15);
+}
+
+.chk-validated textarea.form-control {
+  padding-right: calc(1.75em + 1rem);
+  background-position: top calc(0.4375em + 0.25rem) right calc(0.4375em + 0.25rem);
+}
+
+.chk-validated .form-select {
+  border-color: #EA1212;
+}
+.chk-validated .form-select:not([multiple]):not([size]), .chk-validated .form-select:not([multiple])[size="1"] {
+  padding-right: 5.5rem;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e"), url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23EA1212'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23EA1212' stroke='none'/%3e%3c/svg%3e");
+  background-position: right 1rem center, center right 3rem;
+  background-size: 16px 12px, calc(0.875em + 0.5rem) calc(0.875em + 0.5rem);
+}
+.chk-validated .form-select:focus {
+  border-color: #EA1212;
+  box-shadow: 0 0 0.25rem 0rem rgba(234, 18, 18, 0.15);
+}
+
+.chk-validated .form-check-input {
+  border-color: #EA1212;
+}
+.chk-validated .form-check-input:checked {
+  background-color: #EA1212;
+}
+.chk-validated .form-check-input:focuss {
+  box-shadow: 0 0 0.25rem 0rem rgba(234, 18, 18, 0.15);
+}
+.chk-validated .form-check-input ~ .form-check-label {
+  color: #EA1212;
+}
+
+.form-check-inline .form-check-input ~ .invalid-feedback {
+  margin-left: 0.5em;
+}
+
+.chk-validated .input-group .form-control, .chk-validated .input-group .form-select {
+  z-index: 2;
+}
+.chk-validated .input-group .form-control:focus,
+.chk-validated .input-group .form-select:focus {
+  z-index: 3;
+}
+
+.invalid-input {
+    display: none;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 0.833rem;
+    color: #EA1212;
+}
