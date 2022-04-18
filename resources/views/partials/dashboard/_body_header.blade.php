@@ -183,8 +183,8 @@
             </div>
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="{{route('logout')}}">Profile</a></li>
-            <li><a class="dropdown-item" href="{{route('logout')}}">Privacy Setting</a></li>
+            <li><a class="dropdown-item" href="{{route('editprofile')}}">Profile</a></li>
+            <li><a class="dropdown-item" href="{{route('editprofile')}}">Setting</a></li>
             <li><hr class="dropdown-divider"></li>
             <li>
               <!-- Authentication -->

@@ -33,6 +33,6 @@ class CreateSuperCategoryMstsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('super_category_msts');
+        Schema::dropIfExists('msts_super_category');
     }
 }

@@ -19,7 +19,7 @@
                                  <div class="col-lg-12">
                                     <div class="form-group">
                                        <x-label for="email" class="form-label" :value="__('Email')" />
-                                       <x-input id="email" class="form-control form-control-sm" type="email" aria-describedby="email" placeholder=" " name="email" :value="old('email')" required autofocus />
+                                       <x-input id="email" class="form-control form-control-sm" type="email" aria-describedby="email" placeholder=" " name="email" :value="old('email')" required autofocus aria-autocomplete="FALSE" />
                                     </div>
                                  </div>
                                  <div class="col-lg-12">

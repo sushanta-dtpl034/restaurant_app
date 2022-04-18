@@ -7,4 +7,5 @@
 <!-- Custom Css -->
 <link rel="stylesheet" href="{{asset('css/aprycot.css')}}">
 <link rel="stylesheet" href="{{asset('vendor/Leaflet/leaflet.css')}}" />
+<link rel="stylesheet" href="{{asset('css/style.css')}}">
 

@@ -32,6 +32,6 @@ class CreateIndustryTypeMstsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('industry_type_msts');
+        Schema::dropIfExists('msts_industry_type');
     }
 }
