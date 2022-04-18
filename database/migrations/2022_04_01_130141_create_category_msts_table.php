@@ -34,6 +34,6 @@ class CreateCategoryMstsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category_msts');
+        Schema::dropIfExists('msts_category');
     }
 }

@@ -18,20 +18,20 @@
                            <div class="col-lg-6">
                               <div class="form-group">
                                  <x-label for="name" class="form-label" :value="__('Name')" />
-                                 <x-input id="name" class="form-control form-control-sm" type="text" name="name" :value="old('name')" required autofocus />
+                                 <x-input id="name" class="form-control form-control-sm" type="text" name="name" :value="old('name')" required autofocus aria-autocomplete="FALSE" />
                               </div>
                            </div>
                            
                            <div class="col-lg-6">
                               <div class="form-group">
                                  <x-label for="email" class="form-label" :value="__('Email')" />
-                                 <x-input id="email" class="form-control form-control-sm" type="email" name="email" :value="old('email')" required />
+                                 <x-input id="email" class="form-control form-control-sm" type="email" name="email" :value="old('email')" required autocomplete="false" />
                               </div>
                            </div>
                            <div class="col-lg-6">
                               <div class="form-group">
-                                 <label for="phone" class="form-label">Phone No.</label>
-                                 <input type="text" class="form-control form-control-sm" id="phone" placeholder=" ">
+                              <x-label for="phone" class="form-label" value="Phone No." />
+                              <x-input id="phone" class="form-control form-control-sm" type="text" name="phone" id="phone" :value="old('phone')" required autocomplete="false" />
                               </div>
                            </div>
                            <div class="col-lg-6">
@@ -55,8 +55,8 @@
                            </div>
                            <div class="col-lg-12 d-flex justify-content-center">
                               <div class="form-check mb-3">
-                                 <input type="checkbox" class="form-check-input" id="customCheck1">
-                                 <label class="form-check-label" for="customCheck1">I agree with the terms of use</label>
+                                 <input type="checkbox" class="form-check-input" id="agreeterms" name="agreeterms">
+                                 <label class="form-check-label" for="agreeterms">I agree with the terms of use</label>
                               </div>
                            </div>
                         </div>

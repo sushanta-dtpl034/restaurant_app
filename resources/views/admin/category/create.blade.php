@@ -20,8 +20,6 @@
                                 <div class="row">
                                     <div class="form-group col-sm-12">
                                         <label for="parent_category_type" class="form-label">Select Option</label>
-
-
                                         <div class="checkbox">
                                             <label class="form-label" for="parent_category_type">
                                                 <input name="category_type" class="form-check-input me-2" type="radio" value="parent_category" id="parent_category_type" required {{ (empty(old('category_type')) || old('category_type')) == 'parent_category' || (isset($category->parent_id) && $category->parent_id == 0 ) ? 'checked' : '' }}>Parent category</label>
