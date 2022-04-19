@@ -28,6 +28,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth', 'verified']], functio
     Route::get('editprofile',[UserController::class, 'editprofile'])->name('editprofile');
     Route::post('editprofile',[UserController::class, 'update']);  
     Route::post('changepassword',[UserController::class, 'updatePassword'])->name('change.password');
+    Route::post('profileimage',[UserController::class, 'updateProfileImage'])->name('change.profileimage');
 });
 
 Route::post('api/fetch-states', [DropdownController::class, 'fetchState'])->name('fetchstate');

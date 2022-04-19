@@ -19,6 +19,7 @@ class CreateMstsStatesTable extends Migration
             $table->string('state_code')->length(4);
             $table->string('country_code')->length(2);
             $table->foreign('country_code')->references('country_code')->on('msts_countries');
+            $table->unique(["country_code", "state_code"], 'country_state_unique');
             $table->timestamps();
         });
     }

@@ -120,7 +120,7 @@ $(function () {
          error: function (data) {
             $('#saveBtn').html('Save Changes');
          }
-      });
+      });            
    }
 
 

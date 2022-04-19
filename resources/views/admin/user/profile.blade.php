@@ -1,24 +1,24 @@
 <x-app-layout>
     <div>
         <div class="row">
-            @if(session('success') || session('fail'))
-            <div id="showsuccess">
+            
+            <div id="showsuccess" style="display:@if(session('success') || session('fail')) block @else none @endif;">
                 <x-alert :type="session('fail')? 'danger' : 'success'" :message="session('fail')? session('fail') : session('success')" class="mb-4" />
             </div>
-            @endif
+            
             <div class="col-xl-3 col-lg-4">
                 <div class="card">
                     <div class="card-body">
 
                         <div class="form-group">
-                            <form>
+                            <form id="imageUploadForm" enctype="multipart/form-data">
                                 <div class="profile-img-edit position-relative">
-                                    <img class="profile-pic rounded avatar-100" src="{{asset('images/avatars/01.png')}}" alt="profile-pic">
+                                    <img class="profile-pic rounded avatar-100" src="@if($user->image) {{asset('storage')}}{{str_replace('.','_thumb100.',$user->image)}} @else{{asset('images/avatars/01.png')}} @endif" alt="profile-pic">
                                     <div class="upload-icone bg-primary">
                                         <svg class="upload-button" width="14" height="14" viewBox="0 0 24 24">
                                             <path fill="#ffffff" d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z" />
                                         </svg>
-                                        <input class="file-upload" type="file" accept="image/*">
+                                        <input class="file-upload" id="ImageBrowse" name="image" type="file" accept="image/*">
                                     </div>
                                 </div>
                             </form>
@@ -67,6 +67,7 @@
       let cityurl = "{{route('fetchcity')}}";
       let city_value = {{Js::from($city_value)}};
       let state_code = "{{ (!empty(old('state_code')) ? old('state_code') : (isset($user->state_code) ? $user->state_code : '')) }}";
+      let updateimgurl = "{{ route('change.profileimage') }}";
    </script>
    <script type="module" src="{{ URL::asset('js/admin/user/profile.js') }}"></script>
 </x-slot>
