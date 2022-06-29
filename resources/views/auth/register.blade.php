@@ -18,20 +18,20 @@
                            <div class="col-lg-6">
                               <div class="form-group">
                                  <x-label for="name" class="form-label" :value="__('Name')" />
-                                 <x-input id="name" class="form-control form-control-sm" type="text" name="name" :value="old('name')" required autofocus aria-autocomplete="FALSE" />
+                                 <x-input id="name" class="form-control form-control-sm" type="text" name="name" :value="old('name')" required autofocus aria-autocomplete="off" />
                               </div>
                            </div>
                            
                            <div class="col-lg-6">
                               <div class="form-group">
                                  <x-label for="email" class="form-label" :value="__('Email')" />
-                                 <x-input id="email" class="form-control form-control-sm" type="email" name="email" :value="old('email')" required autocomplete="false" />
+                                 <x-input id="email" class="form-control form-control-sm" type="email" name="email" :value="old('email')" required autocomplete="off" />
                               </div>
                            </div>
                            <div class="col-lg-6">
                               <div class="form-group">
                               <x-label for="phone" class="form-label" value="Phone No." />
-                              <x-input id="phone" class="form-control form-control-sm" type="text" name="phone" id="phone" :value="old('phone')" required autocomplete="false" />
+                              <x-input id="phone" class="form-control form-control-sm" type="text" name="phone" id="phone" :value="old('phone')" required autocomplete="off" />
                               </div>
                            </div>
                            <div class="col-lg-6">

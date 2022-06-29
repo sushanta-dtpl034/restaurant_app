@@ -74,6 +74,19 @@
             </i>
         </a>
         <ul class="sub-nav collapse" id="sidebar-special" data-bs-parent="#sidebar">
+            <!--li class="nav-item">
+                <a class="nav-link {{activeRoute('industry.index')}}" href="{{route('industry.index')}}">
+                   <i class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                            <g>
+                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                            </g>
+                        </svg>
+                    </i>
+                   <i class="sidenav-mini-icon">IT</i>
+                   <span class="item-name">Industry</span>
+                </a>
+            </li-->
             <li class="nav-item">
                 <a class="nav-link {{activeRoute('supercategory.index')}}" href="{{route('supercategory.index')}}">
                     <i class="icon">
@@ -83,8 +96,8 @@
                             </g>
                         </svg>
                     </i>
-                    <i class="sidenav-mini-icon">SC</i>
-                    <span class="item-name">Super category </span>
+                    <i class="sidenav-mini-icon">Cu</i>
+                    <span class="item-name">Cuisines</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -96,8 +109,21 @@
                             </g>
                         </svg>
                     </i>
-                   <i class="sidenav-mini-icon">C</i>
+                   <i class="sidenav-mini-icon">Ca</i>
                    <span class="item-name">Category</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{activeRoute('personalization.index')}}" href="{{route('personalization.index')}}">
+                   <i class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                            <g>
+                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                            </g>
+                        </svg>
+                    </i>
+                   <i class="sidenav-mini-icon">Pe</i>
+                   <span class="item-name">Personalization</span>
                 </a>
             </li>
         </ul>

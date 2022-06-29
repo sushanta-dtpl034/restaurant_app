@@ -23,6 +23,8 @@ class CreateCategoryMstsTable extends Migration
             $table->integer('created_by', 0)->nullable();
             $table->integer('modify_by', 0)->nullable();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
+            $table->bigInteger('super_category_id', 0)->nullable()->default(null);
+            $table->foreign('super_category_id')->references('id')->on('msts_super_category');
             $table->tinyInteger('is_delete')->default(0);
         });
     }

@@ -18,7 +18,7 @@ export function getcities(param) {
     if (typeof param.pre_populate !== 'undefined' && param.pre_populate !== null){
         populate_arr = param.pre_populate;
     }
-    let call_func = [];
+
     let custTokenLimit = 1;
     if (typeof param.token_limit !== 'undefined' && param.token_limit !== "")
         custTokenLimit = token_limit;

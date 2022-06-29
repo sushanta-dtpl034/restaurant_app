@@ -1,5 +1,4 @@
 <?php
-
 function activeRoute($route, $isClass = false): string
 {
     $requestUrl = request()->is($route);
@@ -9,6 +8,15 @@ function activeRoute($route, $isClass = false): string
     } else {
         return $requestUrl ? 'active' : '';
     }
+}
+
+/**
+ * Return 
+ */
+function personalizationFieldType(): array
+{
+    $fieldTypes = ['Textbox','Single Selectbox','Multi Selectbox','Radio','Checkbox'];
+    return $fieldTypes;
 }
 
 function pr($v, $exit = 0): void

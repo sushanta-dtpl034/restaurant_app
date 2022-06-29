@@ -17,24 +17,41 @@ class Category extends Model
     const DELETED_AT = 'deleted_at';
 
     protected $fillable = [
-        'name','image','parent_id'
+        'name','image','parent_id','super_category_id'
     ];
 
+    /**
+     * Get Sub category
+     */
     public function children()
     {
     	return $this->hasMany(self::class, 'parent_id','id');
     }
 
+    /**
+     * Get Parent category
+     */
     public function parent()
     {
     	return $this->belongsTo(Category::class, 'parent_id');
     }
 
+    /**
+     * Get parent category name
+     */
     public function getParentsNames() {
         if($this->parent) {
             return $this->parent->getParentsNames(). " > " . $this->name;
         } else {
             return $this->name;
         }
+    }
+
+    /**
+     * Get the post that owns the comment.
+     */
+    public function supercategory()
+    {
+        return $this->belongsTo(SuperCategory::class,'super_category_id','id');
     }
 }

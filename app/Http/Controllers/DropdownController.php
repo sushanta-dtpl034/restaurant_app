@@ -35,4 +35,15 @@ class DropdownController extends Controller
         $cities = $cities_obj->get(["id","city as value"])->toArray();
         return response()->json($cities);            
     }
+
+    /**
+     * Get Free Token
+     */
+    public function getfreetoken(Request $request)
+    {
+        $input = $request->all();
+        $searchTerm = $input['q'];        
+        $token[] = ['id' => $searchTerm, 'value' => $searchTerm];
+        return response()->json($token);            
+    }
 }

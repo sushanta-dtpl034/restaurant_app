@@ -23,7 +23,8 @@ $(function () {
          $('#token-input-'+city_ele).closest('ul').remove();
          getcities(params);
       });
-      if (state_code !== '') {         
+      if (state_code !== '') {        
+         console.log(city_value); 
          let params = { city_url: cityurl, city_ele: city_ele, state_code: $('#'+state_ele).val(), country_code: $('#'+country_ele).val(), pre_populate: city_value };
          getcities(params);
       }
