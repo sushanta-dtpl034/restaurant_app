@@ -18,9 +18,10 @@ class CreateCitiesStatesTable extends Migration
             $table->string('city');            
             $table->string('state_code')->length(4);
             $table->string('country_code')->length(2);
-            $table->foreign('state_code')->references('state_code')->on('msts_states');
-            $table->foreign('country_code')->references('country_code')->on('msts_countries');
-            $table->unsignedMediumInteger('zipcode')->length(8);
+            //$table->foreign('state_code')->references('state_code')->on('msts_states');
+           // $table->foreign('country_code')->references('country_code')->on('msts_countries');
+            $table->foreign(['country_code', 'state_code'])->references(['country_code', 'state_code'])->on('msts_states')->onDelete('cascade');
+            $table->unsignedMediumInteger('zipcode')->length(8)->nullable()->default(null);
             $table->timestamps();
         });
     }

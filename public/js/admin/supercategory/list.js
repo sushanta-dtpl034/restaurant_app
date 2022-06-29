@@ -44,7 +44,7 @@ $(function () {
       $('#categoryForm').trigger("reset");
       $("#preview").html('');
       $('#modelHeading').html("Add New Cuisine");
-      $('#ajaxModel').modal('show');
+      $('#frmModel').modal('show');
       $('#showsuccess').hide();
    });
 
@@ -54,7 +54,7 @@ $(function () {
       $.get(routesindex + '/' + category_id + '/edit', function (data) {
          $('#modelHeading').html("Edit Cuisine");
          $('#saveBtn').val("edit-category");
-         $('#ajaxModel').modal('show');
+         $('#frmModel').modal('show');
          $('#category_id').val(data.id);
          $('#name').val(data.name);
          $('#oldimgpath').val(data.image);
@@ -108,7 +108,7 @@ $(function () {
             if ($.isEmptyObject(data.error)) {
                
                frm.trigger("reset");
-               $('#ajaxModel').modal('hide');
+               $('#frmModel').modal('hide');
                $(".print-error-msg").find("ul").html('');
                table.draw();
                $('#success_alert_message').html('Cuisine saved successfully!');
@@ -120,7 +120,7 @@ $(function () {
          error: function (data) {
             $('#saveBtn').html('Save Changes');
          }
-      });
+      });            
    }
 
 

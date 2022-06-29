@@ -23,7 +23,8 @@ $(function () {
          $('#token-input-'+city_ele).closest('ul').remove();
          getcities(params);
       });
-      if (state_code !== '') {         
+      if (state_code !== '') {        
+         console.log(city_value); 
          let params = { city_url: cityurl, city_ele: city_ele, state_code: $('#'+state_ele).val(), country_code: $('#'+country_ele).val(), pre_populate: city_value };
          getcities(params);
       }
@@ -39,4 +40,46 @@ $(function () {
       });
 
    });
+
+   $('#imageUpload').on('submit',(function(e) {
+      e.preventDefault();
+      
+   }));
+
+   $("#ImageBrowse").on("change", function() {
+      $("#showsuccess").html('');
+      let frm = $('#imageUploadForm');
+      let formData = new FormData(frm[0]);
+      formData.append('file', $('input[type=file]')[0].files[0]);
+
+      $.ajax({
+         data: formData,
+         url: updateimgurl,
+         type: "POST",
+         dataType: 'json',
+         processData: false,
+         contentType: false,
+         success: function (data) {
+            if ($.isEmptyObject(data.errors)) {
+               $('#showsuccess').html('<div class="alert alert-success">'+data.success+'</div>');
+               $('#showsuccess').show();               
+            } else {
+               printErrorMsg(data.errors);
+            }
+         },
+         error: function (data) {
+            printErrorMsg($.parseJSON(data.responseText).errors);
+         }
+      });
+   });
+
+   function printErrorMsg(msg) {
+      $("#showsuccess").html('');
+      $("#showsuccess").css('display', 'block');
+      $("#showsuccess").html('<div class="alert alert-danger"><ul></ul></div>');
+      $.each(msg, function (key, value) {
+         $("#showsuccess").find("ul").append('<li>' + value + '</li>');
+      });
+   }
+
 });

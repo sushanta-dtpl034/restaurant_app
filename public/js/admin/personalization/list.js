@@ -25,11 +25,8 @@ $(function () {
          data: 'name',
          name: 'name'
       }, {
-         data: 'parent',
-         name: 'parent'
-      }, {
-         data: 'supercategory',
-         name: 'supercategory'
+         data: 'type',
+         name: 'type'
       },
       {
          data: 'action',
@@ -40,14 +37,14 @@ $(function () {
       ]
    });
 
-   $('body').on('click', '.deletecategory', function () {
-      let category_id = $(this).data("id");
+   $('body').on('click', '.deletePersonalization', function () {
+      let p_id = $(this).data("id");
       $('#showsuccess').hide('');
       $('#success_alert_message').html('');
       confirm("Are You sure want to delete !");
       $.ajax({
          type: "DELETE",
-         url: routesindex + '/' + category_id,
+         url: routesindex + '/' + p_id,
          success: function (data) {
             table.draw();
             $('#success_alert_message').html('Cuisine deleted successfully!');

@@ -176,7 +176,7 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link py-0 d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="{{asset('images/avatars/01.png')}}" alt="User-Profile" class="img-fluid avatar avatar-50 avatar-rounded">
+            <img src="@if(Auth::user()->image){{asset('storage')}}{{str_replace('.','_thumb100.',Auth::user()->image)}} @else {{asset('images/avatars/01.png')}}@endif" alt="User-Profile" class="img-fluid avatar avatar-50 avatar-rounded">
             <div class="caption ms-3 d-none d-md-block ">
                 <h6 class="mb-0 caption-title">{{ Auth::user()->name }}</h6>
                 <!--p class="mb-0 caption-sub-title">Marketing Administrator</p-->

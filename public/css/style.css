@@ -1,2 +1,6 @@
 .form-group ul.token-input-list{line-height:2.8;border-radius: 1.25rem ;border: 1px solid #E3E1E1;width: auto}
 .form-group li.token-input-token {margin: 0px; padding: 0 1.4rem;font-size: 1rem;font-weight: 400;color: #959895;background-color: #fff;}
+.multi-token.form-group li.token-input-token p{color: #81868b;}
+.multi-token.form-group ul.token-input-list {line-height: 1.8 !important;padding: 12px;}
+.multi-token.form-group li.token-input-token {width: auto;display: inline-block;padding: 0px 13px;background-color: rgba(234,106,18,0.2) !important;margin: 0px 4px;}
+.multi-token li.token-input-token span{margin-left: 4px;color: red;}

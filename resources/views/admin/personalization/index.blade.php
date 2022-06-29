@@ -12,9 +12,9 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <div class="header-title">
-                            <h4 class="card-title">Category List</h4>
+                            <h4 class="card-title">Personalization List</h4>
                         </div>
-                        <a class="btn btn-success" href="{{ route('category.create') }}" id="createNewcategory">Add New Category</a>
+                        <a class="btn btn-success" href="{{ route('personalization.create') }}" id="createNewPersonalization">Add New Personalization</a>
                     </div>
                     <div class="card-body px-0">
                         <div class="table-responsive">
@@ -24,8 +24,7 @@
                                     <tr class="ligth">
                                         <th>Image</th>
                                         <th>Name</th>
-                                        <th>Parent</th>
-                                        <th>Cuisines</th>
+                                        <th>Type</th>
                                         <th style="min-width: 100px">Action</th>
                                     </tr>
                                 </thead>
@@ -40,8 +39,8 @@
 
     <x-slot name="datatablescript">
         <script>
-            var routesindex = "{{ route('category.index') }}";
+            var routesindex = "{{ route('personalization.index') }}";
         </script>
-        <script type="module" src="{{ URL::asset('js/admin/category/list.js') }}"></script>
+        <script type="module" src="{{ URL::asset('js/admin/personalization/list.js') }}"></script>
     </x-slot>
 </x-app-layout>

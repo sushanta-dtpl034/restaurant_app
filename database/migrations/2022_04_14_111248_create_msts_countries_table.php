@@ -15,8 +15,8 @@ class CreateMstsCountriesTable extends Migration
     {
         Schema::create('msts_countries', function (Blueprint $table) {
             $table->id();
-            $table->string('country')->unique();
-            $table->string('country_code')->length(2);
+            $table->string('country');
+            $table->string('country_code')->length(2)->unique();
             $table->string('phone_code');
             $table->timestamps();
         });

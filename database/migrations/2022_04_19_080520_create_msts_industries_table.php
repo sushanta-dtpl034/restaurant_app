@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIndustryTypeMstsTable extends Migration
+class CreateMstsIndustriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateIndustryTypeMstsTable extends Migration
      */
     public function up()
     {
-        Schema::create('msts_industry_type', function (Blueprint $table) {
+        Schema::create('msts_industries', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
             $table->timestamp('created_date', 0)->nullable();
@@ -32,6 +32,6 @@ class CreateIndustryTypeMstsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('msts_industry_type');
+        Schema::dropIfExists('msts_industries');
     }
 }

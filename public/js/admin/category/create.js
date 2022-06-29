@@ -1,5 +1,13 @@
 $(function () {
    $(document).ready(function() {
+
+      catImg.onchange = evt => {
+         const [file] = catImg.files
+         if (file) {
+            catImgPreview.src = URL.createObjectURL(file)
+         }
+       }
+
       hideShowParentBlk()
       $("input[name$='category_type']").click(function() {
          hideShowParentBlk();
@@ -7,7 +15,14 @@ $(function () {
 
       function hideShowParentBlk(){
          let parent_block = $('#parent_blk');
-         $("input[name='category_type']:checked").val() == 'sub_category' ? parent_block.show() : parent_block.hide();
+         let cuisines_blk = $('#cuisines_blk');
+         if($("input[name='category_type']:checked").val() == 'sub_category'){
+            parent_block.show();
+            cuisines_blk.hide();
+         } else {
+            cuisines_blk.show();
+            parent_block.hide();
+         } 
       }
 
       $.ajaxSetup({
@@ -21,7 +36,7 @@ $(function () {
          allowDuplicates: false,
          minChars: 3,
 	      maxSelection: 1,
-         value:parent_value
+         value:parentValue
       });
 
       $(ms).on('selectionchange', function(e, cb){
