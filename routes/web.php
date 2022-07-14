@@ -2,11 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController;
-use App\Http\Controllers\Admin\SuperCategoryController;
-use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\IndustryController;
-use App\Http\Controllers\Admin\PersonalizationController;
 use App\Http\Controllers\DropdownController;
 
 
@@ -26,15 +22,11 @@ require __DIR__.'/auth.php';
 Route::group(['prefix' => 'admin','middleware' => ['auth', 'verified']], function() {
     Route::get('/', [HomeController::class, 'index']);
     Route::get('/dashboard', [HomeController::class, 'index'])->name('admindashboard');
-    Route::resource('supercategory', SuperCategoryController::class);
-    Route::post('category/getparent',[CategoryController::class, 'getParentAutosuggest'])->name('autosuggestcategory');;
-    Route::resource('category', CategoryController::class);
+
     Route::get('editprofile',[UserController::class, 'editprofile'])->name('editprofile');
     Route::post('editprofile',[UserController::class, 'update']);  
     Route::post('changepassword',[UserController::class, 'updatePassword'])->name('change.password');
     Route::post('profileimage',[UserController::class, 'updateProfileImage'])->name('change.profileimage');
-    Route::resource('industry', IndustryController::class);
-    Route::resource('personalization', PersonalizationController::class);
 });
 
 Route::post('api/fetch-states', [DropdownController::class, 'fetchState'])->name('fetchstate');
