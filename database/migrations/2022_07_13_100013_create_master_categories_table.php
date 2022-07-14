@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMstsIndustriesTable extends Migration
+class CreateMasterCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreateMstsIndustriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('msts_industries', function (Blueprint $table) {
+        Schema::create('master_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->timestamp('created_date', 0)->nullable();
-            $table->timestamp('modify_date', 0)->nullable();
-            $table->integer('created_by', 0)->nullable();
-            $table->integer('modify_by', 0)->nullable();
+            $table->string('image');
             $table->softDeletes($column = 'deleted_at', $precision = 0);
-            $table->tinyInteger('is_delete')->default(0);
+            $table->timestamps();
         });
     }
 
@@ -32,6 +29,6 @@ class CreateMstsIndustriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('msts_industries');
+        Schema::dropIfExists('master_categories');
     }
 }

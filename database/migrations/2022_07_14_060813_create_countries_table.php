@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMstsCountriesTable extends Migration
+class CreateCountriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateMstsCountriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('msts_countries', function (Blueprint $table) {
+        Schema::create('countries', function (Blueprint $table) {
             $table->id();
-            $table->string('country');
+            $table->string('name',80)->unique();
+            $table->char('iso',2)->unique();
+            $table->char('iso3',3)->unique();
             $table->string('country_code')->length(2)->unique();
             $table->string('phone_code');
+            $table->softDeletes($column = 'deleted_at', $precision = 0);
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ class CreateMstsCountriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('msts_countries');
+        Schema::dropIfExists('countries');
     }
 }

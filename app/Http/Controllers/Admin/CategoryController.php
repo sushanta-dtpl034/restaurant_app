@@ -1,26 +1,18 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+//Default
 use App\Http\Controllers\Controller;
-use App\Models\Admin\Category;
-use App\Models\Admin\SuperCategory;
-use App\View\Components\Listicons;
-use App\Helpers\File;
 use Illuminate\Http\Request;
+
+//Others
 use Illuminate\Support\Facades\Blade;
+use App\Models\admin\MasterCategory;
+use App\View\Components\Listicons;
 use DataTables;
 
 class CategoryController extends Controller
 {
-    use File;
-
-    private $imagepath =  'admin/category/';
-    private $thumb_arr = [
-        ['w' => 50],
-        ['w' => 300],
-    ];
-
     /**
      * Display a listing of the resource.
      *
@@ -31,23 +23,18 @@ class CategoryController extends Controller
         $data = array();
         if ($request->ajax()) {
 
-            $data = Category::with('parent')->with('supercategory');
+            $data = MasterCategory::all();
             return Datatables::of($data)
                 ->addIndexColumn()
-                ->addColumn('thumb', function ($row) {
-                    return asset('storage') . str_replace('.', '_thumb50.', $row->image);
-                })
-                ->addColumn('parent', function ($row) {
-                    return (isset($row->parent) && isset($row->parent->name)) ? $row->parent->name : '-';
-                })
-                ->addColumn('supercategory', function ($row) {
-                    return (isset($row->supercategory) && isset($row->supercategory->name)) ? $row->supercategory->name : '-';
-                })
                 ->addColumn('action', function ($row) {
-                    $btn = Blade::renderComponent(new Listicons(['iconType' => 'both', 'delurl' => 'javascript:void(0)', 'delcustomclass' => 'deletecategory', 'editurl' => route('category.edit', $row->id), 'editcustomclass' => '', 'id' => $row->id]));
+                    $btn = Blade::renderComponent(new Listicons(['iconType' => 'both', 'delurl' => 'javascript:void(0)', 'delcustomclass' => 'delrec', 'editurl' => route('category.edit', $row->id), 'editcustomclass' => '', 'id' => $row->id]));
                     return $btn;
-                })->rawColumns(['thumb', 'parent','supercategory', 'action'])->make(true);
+                })->rawColumns(['thumb','action'])->make(true);
         }
+
+        $data['pageHeading'] = 'Category List';
+        $data['listColumnHeadings'] = ['Name','Action'];
+        $data['routeName'] = 'category';
         return view('admin.category.index', $data);
     }
 
@@ -58,12 +45,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::all()->where('parent_id', '0');
-        $superCategories = SuperCategory::all();
-        $category = []; 
-        $image_thumb = '';
-        $parentValue = [];
-        return view('admin.category.create')->with(compact(['category','categories','image_thumb','parentValue','superCategories']));
+        //
     }
 
     /**
@@ -74,51 +56,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'category_type' => 'required',
-            //'super_category_id' => 'required',
-            'parent_id' => 'required_if:category_type,=,"sub_category"',
-            'name' => 'required|unique:msts_category,name',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|required_without:oldimgpath'
-        ],
-        [ 
-            'parent_id.required_if' => 'Parent category field is required.',
-            //'super_category_id' => 'Cuisines field is required.',
-            'image.required_without' => 'Image field is required.',
-            'image.image' => 'The image must be a file of type: jpeg, png, gif, svg.'
-        ]);
-
-        $category = new Category;
-        $category->name = ucfirst($request->name);
-        $category->parent_id = $request->category_type == 'sub_category' ? $request->parent_id : 0;
-        $category->super_category_id = $request->super_category_id;
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $originalImagePath = $this->file($file, $this->imagepath, $this->thumb_arr);
-            if (!empty($request->oldimgpath)) {
-                $this->deleteFile($request->oldimgpath, $this->thumb_arr);
-            }
-        } else {
-            $originalImagePath = $request->oldimgpath;
-        }
-
-        $category->image = $originalImagePath;
-        $category->created_by = $category->modify_by = auth()->id();
-
-        if ($category->save()) {
-            return redirect()->route('category.index')->with(['success' => 'Category added successfully.']);
-        }
-
-        return redirect()->back()->with(['fail' => 'Unable to add category.']);
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show($id)
     {
         //
     }
@@ -126,101 +73,36 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        $image_thumb = asset('storage') . str_replace('.', '_thumb50.', $category->image);
-        $categories = Category::all()->where('parent_id', '0');
-        $selectParent = isset($category->parent) ? [['id' => $category->parent->id, 'name' => $category->parent->name]] : [];
-        $parentValue = $selectParent;
-        $superCategories = SuperCategory::all();
-        $superCategoryName = '';
-        if(isset($category->super_category_id) > 0){
-            $superCategoryName = SuperCategory::where('id', $category->super_category_id)->pluck('name')->first();
-        }
-        $categories = Category::all()->where('parent_id', '0');
-        return view('admin.category.create')->with(compact(['category', 'categories','image_thumb','parentValue','superCategories','superCategoryName']));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //pr($request->all(),1);
-        $id = $category->id;
-        $request->validate([
-            'name' => 'required|unique:msts_category,name,'.$id,
-            //'super_category_id' => 'required',
-            'parent_id' => 'required_if:category_type,=,"sub_category"',//|not_in:0
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|required_without:oldimgpath'
-        ],
-        [
-            //'super_category_id' => 'Cuisines field is required.',
-            'parent_id.required_if' => 'Parent category field is required.',
-            'parent_id.not_in' => 'Parent category field is required.',
-            'image.required_without' => 'Image field is required.',
-            'image.image' => 'Invalid file type. Please select image'
-        ]);
-        
-        $category->name = ucfirst($request->name);
-        $category->parent_id = $request->category_type == 'sub_category' ? $request->parent_id : 0;
-        
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $originalImagePath = $this->file($file, $this->imagepath, $this->thumb_arr);
-            if (!empty($request->oldimgpath)) {
-                $this->deleteFile($request->oldimgpath, $this->thumb_arr);
-            }
-        } else {
-            $originalImagePath = $request->oldimgpath;
-        }
-
-        $category->image = $originalImagePath;
-        $category->modify_by = auth()->id();
-
-        if($request->category_type == 'sub_category'){
-            $category->super_category_id = Category::where('id', $category->parent_id)->pluck('super_category_id')->first();
-        } else {
-            $category->super_category_id = $request->super_category_id;
-        }
-
-        if ($category->save()) {
-            return redirect()->route('category.index')->with(['success' => 'Category successfully updated.']);
-        }
-
-        return redirect()->back()->with(['fail' => 'Unable to update category.']);
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Category  $category
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $cat = Category::find($id);
-        $this->deleteFile($cat->image, $this->thumb_arr);
-        $cat->is_delete = 1;
-        $cat->save();
-        $cat->delete();
-        return response()->json(['success' => 'Super Category deleted successfully.']);
-    }
-
-    /**
-     * Function to return Autosuggest Parent records
-     */
-    function getParentAutosuggest(Request $request) {
-        $input = $request->all();
-        $searchTerm = $input['query'];
-        $categories = Category::query()->where('parent_id', '0')->where('name', 'LIKE', "%{$searchTerm}%")->get()->toArray();
-        return response()->json($categories);
+        $per = MasterCategory::find($id);        
+        $per->delete();
+        return response()->json(['success' => 'Category deleted successfully.']);
     }
 }
