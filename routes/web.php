@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\DropdownController;
+use App\Http\Controllers\Admin\CategoryController;
 
 
 /*
@@ -23,6 +24,9 @@ Route::group(['prefix' => 'admin','middleware' => ['auth', 'verified']], functio
     Route::get('/', [HomeController::class, 'index']);
     Route::get('/dashboard', [HomeController::class, 'index'])->name('admindashboard');
 
+    Route::resource('category', CategoryController::class);
+
+    //user profile routes
     Route::get('editprofile',[UserController::class, 'editprofile'])->name('editprofile');
     Route::post('editprofile',[UserController::class, 'update']);  
     Route::post('changepassword',[UserController::class, 'updatePassword'])->name('change.password');

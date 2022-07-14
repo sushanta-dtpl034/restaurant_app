@@ -1,0 +1,23 @@
+<x-app-layout>
+@include('admin.common.list')
+@include('admin.category.create')
+    <x-slot name="datatablescript">
+        <script>
+            let routesindex = "{{ route('category.index') }}";
+            let columnArr = [{
+                    data: 'name',
+                    name: 'name'
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false
+                },
+            ];            
+            //Add in popup
+            let actionsSettings = {add:"popup",popupMid:'createcategory',import:1,export:1,hideFromExport:[1]};
+            let hideFromExport = [1];//give column index to hide from export
+        </script>
+    </x-slot>
+</x-app-layout>
