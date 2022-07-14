@@ -20,4 +20,14 @@
             let hideFromExport = [1];//give column index to hide from export
         </script>
     </x-slot>
+
+    <x-slot name="include_admin_script">
+        <script>
+         var routesstore = "{{ route('category.store') }}";
+        </script>
+        <script type="module" src="{{asset('js/libraries/jquery-validate1.19.3/jquery.validate.min.js')}}"></script>
+        <script type="module" src="{{asset('js/libraries/jquery-validate1.19.3/additional-methods.min.js')}}"></script>
+        <script type="module" src="{{ URL::asset('js/admin/category/index.js') }}"></script>
+    </x-slot>
+  
 </x-app-layout>

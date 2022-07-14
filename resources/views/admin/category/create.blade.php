@@ -1,5 +1,5 @@
 <x-modal title="Add Category" modelId="createcategory">
-    <form id="categoryForm" name="categoryForm" class="form-horizontal">
+    <form id="addForm" name="addForm" class="form-horizontal">
             <div class="alert alert-danger print-error-msg" style="display:none">
                 <ul></ul>
             </div>
