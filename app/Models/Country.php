@@ -8,10 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Country extends Model
 {
     use HasFactory;
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'msts_countries';
+
+    public function states()
+    {
+        return $this->hasMany(State::class);
+    }
+
+    public function cities()
+    {
+        return $this->hasManyThrough(City::class, State::class);
+    }
 }

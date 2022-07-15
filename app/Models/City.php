@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class City extends Model
 {
     use HasFactory;
-    protected $table = 'msts_cities';
+    
+    public function state()
+    {
+        return $this->belongsTo(State::class);
+    }
+
 }
