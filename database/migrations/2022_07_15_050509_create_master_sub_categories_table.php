@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMasterCategoriesTable extends Migration
+class CreateMasterSubCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateMasterCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('master_categories', function (Blueprint $table) {
-            $table->id();            
+        Schema::create('master_sub_categories', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('business_id')->constrained();
             $table->string('name')->unique();
             $table->string('image');
+            $table->foreignId('master_category_id')->constrained();
+            $table->tinyInteger('status', 0)->nullable();//1 - Means Inactive
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by');
             $table->softDeletes($column = 'deleted_at', $precision = 0);
@@ -31,6 +34,6 @@ class CreateMasterCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('master_categories');
+        Schema::dropIfExists('master_sub_categories');
     }
 }
