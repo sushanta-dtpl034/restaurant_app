@@ -127,4 +127,5 @@ class UserController extends Controller
 
         return response()->json(['error' => 'Error updating profile image.']);
     }
+
 }
