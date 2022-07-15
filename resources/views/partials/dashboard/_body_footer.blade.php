@@ -16,3 +16,4 @@
     </div>
 </footer>
 <!-- Footer Section End -->
+<script type="module" src="{{ URL::asset('js/common/customtemplate.js') }}"></script>
