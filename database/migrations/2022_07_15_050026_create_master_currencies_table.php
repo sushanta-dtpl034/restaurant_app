@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMasterCategoriesTable extends Migration
+class CreateMasterCurrenciesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateMasterCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('master_categories', function (Blueprint $table) {
-            $table->id();            
-            $table->string('name')->unique();
-            $table->string('image');
+        Schema::create('master_currencies', function (Blueprint $table) {
+            $table->id();
+            $table->string('name',25);
+            $table->char('currency_code', 4)->nullable()->default(null);
+            $table->smallInteger('number_code')->nullable()->default(null);
+            $table->tinyInteger('status', 0)->nullable();
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by');
-            $table->softDeletes($column = 'deleted_at', $precision = 0);
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreateMasterCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('master_categories');
+        Schema::dropIfExists('master_currencies');
     }
 }

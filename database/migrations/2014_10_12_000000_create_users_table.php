@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('phone_number', 15)->nullable()->default(null);
             $table->string('alternate_number', 15)->nullable()->default(null);
-            $table->enum('gender', ['m','f'])->nullable()->default(null);
+            $table->enum('gender', ['Male','Female'])->nullable()->default(null);
             $table->string('image')->nullable()->default(null);
             $table->string('zipcode')->nullable()->default(null);
             $table->string('street_address')->nullable()->default(null);
