@@ -59,14 +59,7 @@ class BusinessTypeController extends Controller
             'name' => 'required|unique:master_business_types,business_type,'.$id,
         ]);
         $message =empty($request->id)?"Bussiness Type saved successfully.":"Bussiness Type updated successfully.";
-        if($validatedData->fails()){
-            return Response::json(array(
-                'success' => false,
-                'errors' => $validator->getMessageBag()->toArray()
         
-            ), 400); // 400 being the HTTP code for an invalid request.
-        }
-
         $ins_arr = ['business_type' => string_ucwords($request->name),
         'updated_by' => auth()->id()];
 
