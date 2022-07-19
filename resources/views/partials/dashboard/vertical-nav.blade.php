@@ -87,6 +87,19 @@
                    <span class="item-name">Category</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{activeRoute('bussinesstype.index')}}" href="{{route('bussinesstype.index')}}">
+                   <i class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                            <g>
+                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                            </g>
+                        </svg>
+                    </i>
+                   <i class="sidenav-mini-icon">IT</i>
+                   <span class="item-name">Bussiness Type</span>
+                </a>
+            </li>
         <?php /*
             <li class="nav-item">
                 <a class="nav-link {{activeRoute('industry.index')}}" href="{{route('industry.index')}}">

@@ -1,0 +1,130 @@
+import { validateForm, commonAjaxFunction } from '../../common/create.js';
+
+/**
+ * global form validation calling
+ */
+'use strict';
+// Class definition
+var typeModule = function () {
+	let validationRules = {
+		name: {
+			required: true,
+			minlength: 4
+		},
+	};
+	let validationMessage = {
+		name: {
+			required: "Bussiness type is required.",
+			minlength: 'Bussiness type should be at least 4 characters.'
+		},
+	};
+	return {
+		// public functions
+		init: function () {
+			const params = { validationRules: validationRules, validationMessage: validationMessage }
+			validateForm('addForm', params);
+		}
+	};
+}();
+
+jQuery(document).ready(function () {
+	typeModule.init();
+});
+
+//const params = { validationRules: validationRules, validationMessage: validationMessage };
+//validateForm('addForm', params);
+
+
+
+
+$(function () {
+
+	// $('#createNewcategory').click(function () {
+	// 	$('#saveBtn').val("create-category");
+	// 	$('#category_id').val('');
+	// 	$('#addForm').trigger("reset");
+	// 	$("#preview").html('');
+	// 	$('#modelHeading').html("Add New Cuisine");
+	// 	$('#frmModel').modal('show');
+	// 	$('#showsuccess').hide();
+	// });
+
+	$('body').on('click', '.editForm', function () {
+		$('#createbussinesstype').modal('show');
+		$('#showsuccess').hide();
+		let id = $(this).data('id');
+
+		const response = commonAjaxFunction(id, routesedit);
+		if (response) {
+			console.log(response);
+		}
+
+
+		// $.get(routesindex + '/' + category_id + '/edit', function (data) {
+		// 	$('#modelHeading').html("Edit Cuisine");
+		// 	$('#saveBtn').val("edit-category");
+		// 	$('#frmModel').modal('show');
+		// 	$('#category_id').val(data.id);
+		// 	$('#name').val(data.name);
+		// 	$('#oldimgpath').val(data.image);
+		// 	$("#preview").html('<img src="' + data.imagepath + '" width="100" />');
+		// })
+	});
+
+
+
+
+
+	// $("#addForm").validate({
+	// 	errorClass: 'invalid-input',
+	// 	errorElement: 'div',
+	// 	highlight: function (element, errorClass, validClass) {
+	// 		$(element).closest('form').addClass('was-validated');
+	// 	},
+	// 	unhighlight: function (element, errorClass, validClass) {
+	// 		$(element).closest('form').removeClass('was-validated');
+	// 	},
+	// 	rules: {
+	// 		name: "required",
+	// 	},
+	// 	messages: {
+	// 		name: "Bussiness type is required.",
+	// 	},
+	// 	submitHandler: function (form) {
+	// 		console.log(form);
+	// 		//submitform();
+	// 	}
+	// });
+
+	// function submitform() {
+	// 	let frm = $('#addForm');
+	// 	let formData = new FormData(frm[0]);
+	// 	//formData.append('file', $('input[type=file]')[0].files[0]);
+	// 	$.ajax({
+	// 		data: formData,
+	// 		url: routesstore,
+	// 		type: "POST",
+	// 		dataType: 'json',
+	// 		processData: false,
+	// 		contentType: false,
+	// 		success: function (data) {
+	// 			console.log(data);
+	// 			if ($.isEmptyObject(data.error)) {
+	// 				frm.trigger("reset");
+	// 				$('#createbussinesstype').modal('hide');
+	// 				$(".print-error-msg").find("ul").html('');
+	// 				//table.draw();
+	// 				$('#success_alert_message').html('Bussiness type saved successfully!');
+	// 				$('#showsuccess').show();
+	// 				//setInterval(() => window.location.reload(), 2000);
+	// 			} else {
+	// 				printErrorMsg(data.error);
+	// 			}
+	// 		},
+	// 		error: function (jqXHR) {
+	// 			console.log(jqXHR.responseText);
+	// 			$('#saveBtn').html('Save Changes');
+	// 		}
+	// 	});
+	// }
+});

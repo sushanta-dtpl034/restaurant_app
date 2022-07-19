@@ -7,13 +7,13 @@
       </div>
 </div>
 @include('partials.dashboard._body_sidebar')
-<main class="main-content">
-@include('partials.dashboard._body_header')
-<div class="content-inner mt-5 py-0">
-    {{ $slot }}    
-</div>
-@include('partials.dashboard._body_footer')
-</main>
+    <main class="main-content">
+        @include('partials.dashboard._body_header')
+            <div class="content-inner mt-5 py-0">
+                {{ $slot }} 
+            </div>
+        @include('partials.dashboard._body_footer')
+    </main>
 
 @include('partials.dashboard._scripts')
 @include('partials.dashboard.datatable_scripts')

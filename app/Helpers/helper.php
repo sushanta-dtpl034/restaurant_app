@@ -27,3 +27,14 @@ function pr($v, $exit = 0): void
         exit;
     }
 }
+
+
+
+/**
+ *  converts the first character of each word in a string to uppercase
+ */
+
+function string_ucwords($value){
+    $value=strtolower($value);
+    return ucwords($value);
+} 

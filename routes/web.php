@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\DropdownController;
 use App\Http\Controllers\Admin\CategoryController;
-
+use App\Http\Controllers\Admin\BusinessTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +25,8 @@ Route::group(['prefix' => 'admin','middleware' => ['auth', 'verified']], functio
     Route::get('/dashboard', [HomeController::class, 'index'])->name('admindashboard');
 
     Route::resource('category', CategoryController::class);
-
+    Route::resource('bussinesstype', BusinessTypeController::class);
+    Route::match(['get', 'post'], 'check-duplicate-bussinesstype', [BusinessTypeController::class, 'checkDuplicateBussinesstype']);
     //user profile routes
     Route::get('editprofile',[UserController::class, 'editprofile'])->name('editprofile');
     Route::post('editprofile',[UserController::class, 'update']);  
