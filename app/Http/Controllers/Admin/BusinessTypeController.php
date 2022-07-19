@@ -25,7 +25,7 @@ class BusinessTypeController extends Controller
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $btn = Blade::renderComponent(new Listicons(['iconType' => 'both', 'delurl' => 'javascript:void(0)',  'editurl' =>'javascript:void(0)', 'id' => $row->id]));
+                    $btn = Blade::renderComponent(new Listicons(['iconType' => 'both', 'delurl' => 'javascript:void(0)', 'delcustomclass' => '', 'editurl' =>'javascript:void(0)', 'editcustomclass' => '', 'id' => $row->id]));
                     return $btn;
                 })->rawColumns(['action'])->make(true);
         }
