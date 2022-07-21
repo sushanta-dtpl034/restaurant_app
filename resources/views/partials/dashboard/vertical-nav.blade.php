@@ -100,6 +100,7 @@
                    <span class="item-name">Bussiness Type</span>
                 </a>
             </li>
+           
         <?php /*
             <li class="nav-item">
                 <a class="nav-link {{activeRoute('industry.index')}}" href="{{route('industry.index')}}">

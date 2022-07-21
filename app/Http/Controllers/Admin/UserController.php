@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Hash;
 use App\Helpers\File;
+use App\View\Components\Listicons;
+use DataTables;
+use Response;
 
 class UserController extends Controller
 {
@@ -23,7 +26,10 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        return view('admin.user.profile');
+        $data['pageHeading'] = 'Demo Form List';
+        $data['listColumnHeadings'] = ['Name','Action'];
+        $data['routeName'] = 'demo';
+        return view('admin.user.index');
     }
 
     /**

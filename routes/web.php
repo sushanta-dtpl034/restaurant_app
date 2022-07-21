@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\DropdownController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BusinessTypeController;
+use App\Http\Controllers\Admin\DemoController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +29,9 @@ Route::group(['prefix' => 'admin','middleware' => ['auth', 'verified']], functio
     Route::resource('category', CategoryController::class);
     Route::resource('bussinesstype', BusinessTypeController::class);
     Route::match(['get', 'post'], 'check-duplicate-bussinesstype', [BusinessTypeController::class, 'checkDuplicateBussinesstype']);
+
     //user profile routes
+    Route::get('users',[UserController::class, 'index'])->name('users');
     Route::get('editprofile',[UserController::class, 'editprofile'])->name('editprofile');
     Route::post('editprofile',[UserController::class, 'update']);  
     Route::post('changepassword',[UserController::class, 'updatePassword'])->name('change.password');
